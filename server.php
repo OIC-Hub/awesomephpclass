@@ -1,4 +1,6 @@
 <?php
+require_once "database.php";
+
 $name = $email = $nameErr = $emailErr = "";
 if (isset($_POST['register'])) {
     if (empty($_POST['name'])) {
@@ -12,5 +14,13 @@ if (isset($_POST['register'])) {
         $emailErr = "Your Email is required";
     } else {
         $email = $_POST['email'];
+    }
+
+    if (!empty($name) && !empty($email)) {
+        //
+        $sql = "INSERT INTO registration(name, email) VALUES('$name', '$email')";
+        if (mysqli_query($db, $sql)) {
+            echo "Success";
+        }
     }
 }
