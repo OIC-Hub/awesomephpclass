@@ -58,4 +58,3 @@ while ($result = mysqli_fetch_assoc($select)) {
     // $users[array_keys($result)] = array_values($result);
     $users[] = $result;
 }
-print_r($users);
