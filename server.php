@@ -50,3 +50,12 @@ if (isset($_POST['login'])) {
     }
     print_r($login_Errors);
 }
+
+
+$select = mysqli_query($db, "SELECT * FROM registration");
+$users = [];
+while ($result = mysqli_fetch_assoc($select)) {
+    // $users[array_keys($result)] = array_values($result);
+    $users[] = $result;
+}
+print_r($users);
