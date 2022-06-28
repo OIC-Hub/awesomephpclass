@@ -18,10 +18,14 @@ if (isset($_POST['register'])) {
 
     if (!empty($name) && !empty($email)) {
         //
-        $sql = "INSERT INTO registration(name, email) VALUES('$name', '$email')";
-        if (mysqli_query($db, $sql)) {
-            echo "Success";
-        }
+        $sql = "INSERT INTO registration(name, email) VALUES(?,?)";
+        $statement = $db->prepare($sql);
+        $statement->bind_param('ss', $name, $email);
+        $statement->execute();
+
+        // if (mysqli_query($db, $sql)) {
+        //     echo "Success";
+        // }
     }
 }
 
@@ -52,9 +56,13 @@ if (isset($_POST['login'])) {
 }
 
 
-$select = mysqli_query($db, "SELECT * FROM registration");
-$users = [];
-while ($result = mysqli_fetch_assoc($select)) {
-    // $users[array_keys($result)] = array_values($result);
-    $users[] = $result;
+$select = $db->query("SELECT * FROM registration");
+if ($select->num_rows < 1) {
+    $users  = "No data available";
+} else {
+    $users = $select->fetch_all(MYSQLI_ASSOC);
 }
+// while ($result = mysqli_fetch_assoc($select)) {
+//     // $users[array_keys($result)] = array_values($result);
+//     $users[] = $result;
+// }

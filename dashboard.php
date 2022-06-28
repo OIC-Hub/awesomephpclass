@@ -1,11 +1,16 @@
 <?php
-require_once "loginserver.php";
+session_start();
+if (!isset($_SESSION['email'])) {
+    header('location:login.php');
+}
+echo $_SESSION['email'];
 ?>
+
 <!doctype html>
 <html lang="en">
 
 <head>
-    <title>Login</title>
+    <title> User Dashboard</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,23 +20,10 @@ require_once "loginserver.php";
 </head>
 
 <body>
-    <div class="container pt-4">
-        <div class="col-md-4 offset-md-4">
-            <h1>Login Page</h1>
-            <form action="login.php" method="POST">
-                <div class="form-group">
-                    <label for="">Email</label>
-                    <input type="email" name="email" class="form-control" placeholder="Email">
+    <h1> </h1>
+    <a href="logout.php"> Log-out</a>
 
-                </div>
-                <div class="form-group">
-                    <label for="">Password</label>
-                    <input type="password" name="password" class="form-control" placeholder="Password">
-                </div>
-                <button name="login" type="submit" class="btn btn-primary">Submit</button>
-            </form>
-        </div>
-    </div>
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
