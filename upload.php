@@ -30,7 +30,7 @@
                     </div>
                     <div class="form-group">
                         <label for="">Your picture</label>
-                        <input type="file" value="" name="image" class="form-control">
+                        <input type="file" value="" id="image" name="image" class="form-control">
                         <small id="helpId" class="text-danger"></small>
                     </div>
                     <button type="submit" name="register">Register</button>
@@ -49,15 +49,16 @@
         var reg = document.forms['reg'];
         reg.onsubmit = function(event) {
             event.preventDefault();
-            let name = reg['name'].value;
-            let email = reg['email'].value;
-            let image = reg['image'].value;
-            console.log(name, email, image);
-            const data = {
-                username: name,
-                email: email,
-                image: image
-            }
+
+            let data = new FormData(reg);
+            // let name = reg['name'].value;
+            // let email = reg['email'].value;
+            // let image = document.querySelectorAll('#image')[0].files;
+            // // const data = {
+            //     username: name,
+            //     email: email,
+            //     image: image
+            // }
             axios.post('datauploadserver.php', data).then(response => {
                 console.log(response.data);
                 if (response.data.emailErr) {

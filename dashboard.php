@@ -5,8 +5,7 @@ if (!isset($_SESSION['email'])) {
 }
 echo $_SESSION['email'];
 ?>
-
-<!doctype html>
+<img src="document/" <!doctype html>
 <html lang="en">
 
 <head>
